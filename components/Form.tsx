@@ -1,9 +1,15 @@
-import Form from 'next/form'
-import styles from "./form.module.scss"
+"use client";
+import Form from 'next/form';
+import styles from "./form.module.scss";
+import Link from 'next/link'
 
 export default function FormComponent() {
+    const handleSubmit = () => {
+        console.log("Submit")
+    }
+
     return (
-        <Form action="" className={styles.form}>
+        <Form action="" className={styles.form} onSubmit={handleSubmit}>
             <input className={styles.form_input} name="firstname" type='text' placeholder="First Name" />
             <input className={styles.form_input} name="lastname" type='text' placeholder="Last Name" />
             <input className={styles.form_input} name="email" type='email' placeholder="Email" />
@@ -30,7 +36,9 @@ export default function FormComponent() {
                 <input className={styles.form_input} name="cv" type='file' placeholder="Resume/CV Upload" />
             </div>
             <input className={styles.form_input} name="info" type='textarea' placeholder="Additional Information" maxLength={1000} />
-            <button type="submit">Submit</button>
+            <Link href="/success">
+                <button type="submit">Submit</button>
+            </Link>
         </Form>
     )
 }

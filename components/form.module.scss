@@ -18,9 +18,9 @@
         border-radius: 10px;
         margin: 15px 0;
         padding: 10px;
-        &:last-child {
-            height: 150px;
-        }
+    }
+    input[type="textarea"] {
+        height: 150px;
     }
     button {
         width: 100%;
