@@ -4,12 +4,13 @@ import styles from "./form.module.scss";
 import Link from 'next/link'
 
 export default function FormComponent() {
-    const handleSubmit = () => {
-        console.log("Submit")
+    const handleSubmit = (event: any) => {
+        // event.preventDefault()
+        console.log("event", event.target)
     }
 
     return (
-        <Form action="" className={styles.form} onSubmit={handleSubmit}>
+        <Form action={handleSubmit} className={styles.form}>
             <input className={styles.form_input} name="firstname" type='text' placeholder="First Name" />
             <input className={styles.form_input} name="lastname" type='text' placeholder="Last Name" />
             <input className={styles.form_input} name="email" type='email' placeholder="Email" />
@@ -33,7 +34,7 @@ export default function FormComponent() {
             </div>
             <div className={styles.form_block}>
                 <label className={styles.form_label} htmlFor="cv">Resume/CV Upload</label>
-                <input className={styles.form_input} name="cv" type='file' placeholder="Resume/CV Upload" />
+                <input className={styles.form_input} name="cv" type='file' placeholder="Resume/CV Upload" accept='.pdf, .doc,.docx' />
             </div>
             <input className={styles.form_input} name="info" type='textarea' placeholder="Additional Information" maxLength={1000} />
             <Link href="/success">

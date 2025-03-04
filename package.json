@@ -6,12 +6,17 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "json": "json-server --watch db.json -p 3001"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^2.6.0",
+    "antd": "^5.24.2",
+    "dayjs": "^1.11.13",
     "next": "15.2.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-redux": "^9.2.0",
     "sass": "^1.85.1"
   },
   "devDependencies": {

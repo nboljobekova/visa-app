@@ -5,15 +5,16 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 First, run the development server:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
+npm run json
+
+Runs the json-server to generate data to work with in web components.
+Open http://localhost:3000/leads to view data in the browser.
+
+The database will be updated if you make changes either on the admin part of the web application or in db.json file with further reloading server (via npm run json).
+
+npm run dev
+Runs the app in the development mode.
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
