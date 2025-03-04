@@ -1,0 +1,33 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    max-width: 50%;
+    width: 100%;
+    justify-content: center;
+    margin: 50px auto;
+    &_block {
+        width: 100%;
+    }
+    input[type="radio"] {
+        width: 5%;
+        margin-right: 20px;
+    }
+    input {
+        width: 100%;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        margin: 15px 0;
+        padding: 10px;
+        &:last-child {
+            height: 150px;
+        }
+    }
+    button {
+        width: 100%;
+        border-radius: 10px;
+        background-color: #000;
+        color: white;
+        padding: 10px;
+        margin-top: 15px;
+    }
+}
