@@ -1,45 +1,57 @@
 "use client";
-import Form from 'next/form';
+import { useState } from 'react';
+import { useForm, SubmitHandler } from "react-hook-form"
 import styles from "./form.module.scss";
-import Link from 'next/link'
+
+type Inputs = {
+    firstname: string,
+    lastname: string,
+    email: string,
+    linkedIn: string,
+    interests: string[],
+    info: string,
+}
+
 
 export default function FormComponent() {
-    const handleSubmit = (event: any) => {
-        // event.preventDefault()
-        console.log("event", event.target)
+    const [selected, setSelected] = useState<string[]>([])
+
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm<Inputs>()
+    const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data)
+    
+    const handleSelectChange = (e: any) => {
+        let value = e.target.value;
+        let isSelected = selected.find((item: string) => item == value)
+        setSelected(prevState => {
+            return isSelected ? prevState.filter((element) => element !== value) : [...prevState, ...value]
+        })
     }
 
+    const options = [{ label: 'O-1', value: 'O-1' }, { label: 'EB-1A', value: 'EB-1A' }, { label: 'EB-2A NIW', value: 'EB-2A NIW' }, { label: 'I don\'t know', value: 'I don\'t know' }];
+
     return (
-        <Form action={handleSubmit} className={styles.form}>
-            <input className={styles.form_input} name="firstname" type='text' placeholder="First Name" />
-            <input className={styles.form_input} name="lastname" type='text' placeholder="Last Name" />
-            <input className={styles.form_input} name="email" type='email' placeholder="Email" />
-            <input className={styles.form_input} name="linkedIn" type='text' maxLength={150} placeholder="LinkedIn Profile" />
+        <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+            <input {...register("firstname", { required: true })} type='text' placeholder="First Name" />
+            <span className={errors.firstname?.type === "required" ? styles.form_error : styles.form_hidden} role="alert">First name is required</span> 
+            <input {...register("lastname", { required: true })} type='text' placeholder="Last Name" />
+            <span className={errors.lastname?.type === "required" ? styles.form_error : styles.form_hidden} role="alert">First name is required</span>
+            <input {...register("email", { required: true })} type='email' placeholder="Email" />
+            <span className={errors.email?.type === "required" ? styles.form_error : styles.form_hidden} role="alert">First name is required</span>
+            <input {...register("linkedIn", { required: true })} type='text' maxLength={150} placeholder="LinkedIn Profile" />
+            <span className={errors.linkedIn?.type === "required" ? styles.form_error : styles.form_hidden} role="alert">First name is required</span>
             <p className={styles.form_title}>Visas of Interest</p>
-            <div>
-                <input className={styles.form_input} name="interests" type='radio' />
-                <label className={styles.form_label} htmlFor="interests">O-1</label>
-            </div>
-            <div>
-                <input className={styles.form_input} name="interests" type='radio' />
-                <label className={styles.form_label} htmlFor="interests">EB-1A</label>
-            </div>
-            <div>
-                <input className={styles.form_input} name="interests" type='radio' />
-                <label className={styles.form_label} htmlFor="interests">EB-2A NIW</label>
-            </div>
-            <div>
-                <input className={styles.form_input} name="interests" type='radio' />
-                <label className={styles.form_label} htmlFor="interests">I don't know</label>
-            </div>
-            <div className={styles.form_block}>
-                <label className={styles.form_label} htmlFor="cv">Resume/CV Upload</label>
-                <input className={styles.form_input} name="cv" type='file' placeholder="Resume/CV Upload" accept='.pdf, .doc,.docx' />
-            </div>
-            <input className={styles.form_input} name="info" type='textarea' placeholder="Additional Information" maxLength={1000} />
-            <Link href="/success">
-                <button type="submit">Submit</button>
-            </Link>
-        </Form>
+            <select className={styles.form_select} {...register("interests")} onChange={handleSelectChange}>
+                {options.map((option) => (
+                    <option value={option.value} key={option.value}>{option.label}</option>
+                ))}
+            </select>
+            <input type='file' accept='.pdf, .doc, .docx' />
+            <input {...register("info")} type='textarea' placeholder="Additional Information" maxLength={1000} />
+            <input type="submit"/>
+        </form>
     )
 }

@@ -1,9 +1,17 @@
 .table {
     display: flex;
     flex-direction: column;
-    max-width: 50%;
     width: 100%;
-    justify-content: center;
-    margin: 50px auto;
-    text-align: center;
+    padding: 24px;
+    
+    &_head {
+        text-align: left;
+        font-weight: 600;
+        margin-bottom: 20px;
+    }
+
+    .ant-table {
+        border: 1px solid #ccc;
+        border-radius: 10px;
+    }
 }

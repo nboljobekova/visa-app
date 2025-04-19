@@ -43,6 +43,7 @@ export default function TableComponent() {
 
     return (
         <div className={styles.table}>
+            <h2 className={styles.table_head}>Leads</h2>
             <Table
                 dataSource={data}
                 columns={columns}

@@ -1,0 +1,45 @@
+.nav {
+    display: flex;
+    flex-direction: column;
+    width: 15%;
+    height: 100vh;
+    position: relative;
+    border-right: 1px solid #e0e0e0;
+
+    &_head {
+        height: 100px;
+        background: linear-gradient(0deg, rgba(118, 121, 9, 0) 25%, rgba(226, 237, 145, 1) 100%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: 600;
+    }
+
+    &_list {
+        display: flex;
+        flex-direction: column;
+
+        &_item {
+            padding: 10px;
+        }
+
+        &_active {
+            font-weight: 600;
+        }
+    }
+
+    &_foot {
+        position: absolute;
+        height: 50px;
+        bottom: 0;
+        font-weight: 600;
+        font-size: 12px;
+
+        &_icon {
+            padding: 7px;
+            background-color: #ccc;
+            border-radius: 50%;
+            margin: 0 10px;
+        }
+    }
+}
